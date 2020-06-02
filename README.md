@@ -1,7 +1,6 @@
 # Deployment Instructions
 
 ## SSH onto minikube and see docker images on local machine
-minikube ssh
     `minikube ssh` 
     `eval $(minikube docker-env)`
 
