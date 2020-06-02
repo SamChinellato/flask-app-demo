@@ -18,7 +18,7 @@
 
 ## run the kubectl busybox
 `kubectl run busybox --image=busybox -it --restart=Never -- /bin/sh`
-`wget <pod-ip>:5001`
+`wget <pod-ip>:5000`
 
 ## Run unit tests form flask-app directory
 `python3 -m src.tests.test_basic`
