@@ -2,7 +2,7 @@
 
 ## SSH onto minikube and see docker images on local machine
 minikube ssh
-    `// While sshd onto minikube` 
+    `minikube ssh` 
     `eval $(minikube docker-env)`
 
 ## Build docker image (name it what you want, here it's flask-app-server) from Dockerfile directory
