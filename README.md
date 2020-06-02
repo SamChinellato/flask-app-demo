@@ -2,10 +2,10 @@
 
 ## SSH onto minikube and see docker images on local machine
 minikube ssh
-    ### While sshd onto minikube 
-    eval $(minikube docker-env)
+    `// While sshd onto minikube` 
+    `eval $(minikube docker-env)`
 
-# Build docker image (name it what you want, here it's flask-app-server) from Dockerfile directory
+## Build docker image (name it what you want, here it's flask-app-server) from Dockerfile directory
 `docker image build -t flask-app-server`
 
 ## Create deployment from manifest file
@@ -20,3 +20,6 @@ minikube ssh
 ## run the kubectl busybox
 `kubectl run busybox --image=busybox -it --restart=Never -- /bin/sh`
 `wget <pod-ip>:5001`
+
+## Run unit tests form flask-app directory
+`python3 -m src.tests.test_basic`
