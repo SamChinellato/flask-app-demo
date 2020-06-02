@@ -1,10 +1,15 @@
 pipeline {
-  agent { dockerfile true }
+  agent { docker { image 'python:3.7.2' } }
   stages {
+    stage('build') {
+      steps {
+        sh 'pip install -r requirements.txt'
+        sh 'pip install -r ./src/requirements.txt'
+      }
+    }
     stage('test') {
       steps {
-        sh 'sh python --version'
-        sh 'python -m src.tests.test_basic'
+        sh 'python -m src.tests.test_basic '
       }
       post {
         always {
