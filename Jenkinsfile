@@ -18,7 +18,7 @@ pipeline {
     }
     stage('run') {
       steps{
-          sh 'export FLASK_APP=./src/app.py'
+          sh 'export FLASK_APP=app.py'
           sh 'python -m flask run'
       }
     }
