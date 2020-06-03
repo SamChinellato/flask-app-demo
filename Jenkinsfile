@@ -22,7 +22,7 @@ pipeline {
     stage('run') {
       steps{
           echo "Flask App is ${FLASK_APP}"
-          sh 'python -m flask run'
+          sh 'flask run'
       }
     }
   }
