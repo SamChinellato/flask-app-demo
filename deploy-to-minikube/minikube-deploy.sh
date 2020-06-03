@@ -22,7 +22,7 @@ echo "#######################"
 kubectl apply -f ./deployment.yml
 echo "#############################################################################################"
 echo "#############################################################################################"
-echo "Deployment Successful! Run 'kubectl get pods' to see deploted pods."
+echo "Deployment Successful! Run 'kubectl get pods' to see deployed pods."
 echo "To view deployed pods: 'minikube dashboard'"
 echo "Test the deployment by curling a pod from busybox"
 echo "To log in to busybox: 'kubectl run busybox --image=busybox -it --restart=Never -- /bin/sh'"
