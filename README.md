@@ -83,5 +83,5 @@ You should now have 5 healthy pods running the flask app!
 ## Create deployment from deployment.yml file
     kubectl apply -f ./deployment.yml
 
-## Run unit tests form flask-app directory
+## Run unit tests from flask-app directory
     python -m src.tests.test_basic
