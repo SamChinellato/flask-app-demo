@@ -22,6 +22,9 @@ pipeline {
     stage('run') {
       steps{
           echo "Flask App is ${FLASK_APP}"
+          sh 'cd /src'
+          ehco 'Working on directory:'
+          sh 'pwd'
           sh 'flask run'
       }
     }
