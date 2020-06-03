@@ -24,7 +24,7 @@ pipeline {
           echo "Flask App is ${FLASK_APP}"
           dir("src") {
             sh 'pwd'
-            sh 'flask run'
+            sh 'python -m flask run'
           }
       }
     }
