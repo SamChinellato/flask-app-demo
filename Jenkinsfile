@@ -1,5 +1,8 @@
 pipeline {
   agent { docker { image 'python:3.7.2' } }
+  environment {
+    FLASK_APP = '/src/app.py'
+  }
   stages {
     stage('build') {
       steps {
@@ -18,8 +21,8 @@ pipeline {
     }
     stage('run') {
       steps{
-          sh 'cd ./src'
-          sh 'flask run'
+          echo "Flask App is ${FLASK_APP}"
+          sh 'python -m flask run'
       }
     }
   }
