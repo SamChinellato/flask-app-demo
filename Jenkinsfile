@@ -19,14 +19,5 @@ pipeline {
         }
       }       
     }
-    stage('run') {
-      steps{
-          echo "Flask App is ${FLASK_APP}"
-          dir("src") {
-            sh 'pwd'
-            sh 'python -m flask run'
-          }
-      }
-    }
   }
 }
