@@ -10,7 +10,7 @@ class TestHello(unittest.TestCase):
         self.app = app.app.test_client()
 
     def test_hello(self):
-        expected_text = "Welcome To My Flask App"
+        expected_text = "Welcome"
         rv = self.app.get('/')
         self.assertEqual(rv.status, '200 OK')
         self.assertIn(bytearray("{}".format(expected_text), 'utf-8'), rv.data)

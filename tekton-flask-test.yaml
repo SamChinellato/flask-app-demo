@@ -1,0 +1,44 @@
+---
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: flask-run-tests
+  labels:
+    app.kubernetes.io/version: "0.1"
+  annotations:
+    tekton.dev/pipelines.minVersion: "0.12.1"
+    tekton.dev/tags: python, flask , test
+    tekton.dev/displayName: flask run tests
+
+spec:
+  description: >-
+    This task runs unit tests for this Flask Web App.
+  workspaces:
+    - name: source
+  params:
+    - name: PYTHON
+      description: The tag for the Python image.
+      type: string
+      default: "latest"
+    - name: ARGS
+      description: The additional arguments to be used for flask tests.
+      type: string
+      default: ""
+    - name: SOURCE_PATH
+      description: The path to the source code.
+      default: "."
+    - name: REQUIREMENTS_FILE
+      description: The name of the requirements file inside the source location.
+      default: "requirements.txt"
+  steps:
+    - name: code-coverage
+      image: docker.io/python:$(inputs.params.PYTHON)
+      workingDir: $(workspaces.source.path)
+      script: |
+        export PATH=$PATH:$HOME/.local/bin
+        if [ -n "$(inputs.params.REQUIREMENTS_FILE)" ] && [ -e "$(inputs.params.REQUIREMENTS_FILE)" ];then
+          pip install -r $(inputs.params.SOURCE_PATH)/$(inputs.params.REQUIREMENTS_FILE)
+          python3 -m src.tests.test_basic
+        else:
+          echo "Looks like something went wrong, did you pass me a requirements file?"
+        fi
