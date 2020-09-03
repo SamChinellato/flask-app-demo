@@ -14,7 +14,9 @@ spec:
   description: >-
     This task runs unit tests for this Flask Web App.
   workspaces:
-    - name: source
+    - name: unit-tests
+      description: Workspace for unit test execution
+      mountPath: /testing 
   params:
     - name: PYTHON
       description: The tag for the Python image.
@@ -31,14 +33,14 @@ spec:
       description: The name of the requirements file inside the source location.
       default: "requirements.txt"
   steps:
-    - name: code-coverage
+    - name: flask-unit-tests
       image: docker.io/python:$(inputs.params.PYTHON)
-      workingDir: $(workspaces.source.path)
+      workingDir: $(workspaces.unit-tests.path)/test
       script: |
         export PATH=$PATH:$HOME/.local/bin
-        if [ -n "$(inputs.params.REQUIREMENTS_FILE)" ] && [ -e "$(inputs.params.REQUIREMENTS_FILE)" ];then
+        if [ -N "$(inputs.params.REQUIREMENTS_FILE)" ] && [ -e "$(inputs.params.REQUIREMENTS_FILE)" ];then
           pip install -r $(inputs.params.SOURCE_PATH)/$(inputs.params.REQUIREMENTS_FILE)
-          python3 -m src.tests.test_basic
+          python -m tests.test_basic
         else:
           echo "Looks like something went wrong, did you pass me a requirements file?"
         fi
