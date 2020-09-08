@@ -3,8 +3,8 @@
 flask (pip install flask) and run 'flask run' from the same dir as
 this module."""
 
-
 from flask import Flask, render_template
+
 
 app = Flask(__name__)
 
